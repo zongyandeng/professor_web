@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. 研究成果頁面 Tab 切換邏輯
+    // 2. 研究成果頁面 Tab 切換邏輯與篩選整合
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -31,8 +31,80 @@ document.addEventListener('DOMContentLoaded', () => {
                 const targetContent = document.getElementById(targetId);
                 if (targetContent) {
                     targetContent.classList.add('active');
+                    // 當切換 Tab 時，重新套用篩選並播放動畫
+                    applyFilters(targetId);
                 }
             });
+        });
+    }
+
+    // 3. 成果與計畫篩選器互動邏輯
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    function applyFilters(tabId) {
+        const tabContent = document.getElementById(tabId);
+        if (!tabContent) return;
+
+        const items = tabContent.querySelectorAll('.publication-item');
+        if (items.length === 0) return;
+        
+        // 獲取該 Tab 下當前啟用的篩選條件
+        let selectedYear = 'all';
+        let selectedRole = 'all';
+
+        if (tabId === 'projects') {
+            const yearBtn = tabContent.querySelector('.filter-buttons[data-filter-type="year"] .filter-btn.active');
+            const roleBtn = tabContent.querySelector('.filter-buttons[data-filter-type="role"] .filter-btn.active');
+            if (yearBtn) selectedYear = yearBtn.getAttribute('data-filter');
+            if (roleBtn) selectedRole = roleBtn.getAttribute('data-filter');
+        } else {
+            const yearBtn = tabContent.querySelector('.filter-container .filter-btn.active');
+            if (yearBtn) selectedYear = yearBtn.getAttribute('data-filter');
+        }
+
+        items.forEach(item => {
+            const itemYear = item.getAttribute('data-year');
+            const itemRole = item.getAttribute('data-role');
+
+            const yearMatch = (selectedYear === 'all' || itemYear === selectedYear);
+            const roleMatch = (selectedRole === 'all' || itemRole === selectedRole);
+
+            // 移除舊的 fade-in 效果以重新觸發動畫
+            item.classList.remove('fade-in');
+
+            if (yearMatch && roleMatch) {
+                item.classList.remove('filtered-out');
+                // 觸發 reflow 確保動畫重繪
+                void item.offsetWidth;
+                item.classList.add('fade-in');
+            } else {
+                item.classList.add('filtered-out');
+            }
+        });
+    }
+
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 找到同一個按鈕群組並切換 active
+                const parentGroup = button.parentElement;
+                const siblings = parentGroup.querySelectorAll('.filter-btn');
+                siblings.forEach(sib => sib.classList.remove('active'));
+                button.classList.add('active');
+
+                // 找到當前所在的 tab-content id 並套用篩選
+                const tabContent = button.closest('.tab-content');
+                if (tabContent) {
+                    applyFilters(tabContent.id);
+                }
+            });
+        });
+
+        // 頁面加載時，對當前 active 的 tab 初始化篩選動畫
+        tabContents.forEach(tab => {
+            if (tab.classList.contains('active')) {
+                applyFilters(tab.id);
+            }
         });
     }
 

@@ -564,6 +564,96 @@ a {
     display: block;
 }
 
+/* 成果與計畫篩選器 */
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+    background: var(--bg-card);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    flex-wrap: wrap;
+}
+
+.project-filters {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary-light);
+    min-width: 80px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background-color: var(--accent-light);
+}
+
+.filter-btn.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--text-light);
+    box-shadow: 0 4px 10px rgba(30, 41, 59, 0.15);
+}
+
+/* 篩選項目淡入動畫 */
+.publication-item {
+    display: block;
+}
+
+.publication-item.fade-in {
+    animation: itemFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.publication-item.filtered-out {
+    display: none !important;
+}
+
+@keyframes itemFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* 論文列表樣式 */
 .publication-list {
     list-style: none;
