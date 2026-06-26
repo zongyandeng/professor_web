@@ -1133,7 +1133,7 @@ a {
    各風格專屬微調 (Theme Specific Customizations)
    ========================================================================== */
 
-/* ⚡ 現代科技風 (Tech Theme) 微調 - 電子示波器與未來感 */
+/* ⚡ 現代科技風 (Tech Theme) 微調 - 電子示波器與未來感控制台 */
 html[data-theme="tech"] body {
     background-image: 
         radial-gradient(rgba(6, 182, 212, 0.08) 1.5px, transparent 1.5px),
@@ -1323,6 +1323,13 @@ html[data-theme="tech"] .prof-img-container {
     overflow: hidden;
 }
 
+/* 電子熱成像人像濾鏡 */
+html[data-theme="tech"] .prof-img {
+    filter: hue-rotate(180deg) brightness(1.15) contrast(1.15);
+    mix-blend-mode: screen;
+    background: rgba(6, 182, 212, 0.1);
+}
+
 /* 電子雷達掃描線動畫 */
 html[data-theme="tech"] .prof-img-container::after {
     content: '';
@@ -1347,6 +1354,67 @@ html[data-theme="tech"] .prof-img-container::after {
 html[data-theme="tech"] .grid-2col {
     grid-template-columns: 1fr 1.35fr; /* 非對稱 */
     gap: 3rem;
+}
+
+/* 科技風最新消息重構：【終極三色控制終端機視窗】 */
+html[data-theme="tech"] .news-list {
+    background-color: #040810;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 45px 15px 15px 15px; /* 為頂部控制列留出高度 */
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+/* 終端機三色小按鈕與模擬視窗標題 */
+html[data-theme="tech"] .news-list::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ff5f56; /* 紅 */
+    box-shadow: 18px 0 0 #ffbd2e, 36px 0 0 #27c93f; /* 黃、綠 */
+}
+
+html[data-theme="tech"] .news-list::after {
+    content: 'Terminal - SPLAB_News_Log';
+    position: absolute;
+    top: 11px;
+    left: 70px;
+    font-family: var(--font-serif);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+html[data-theme="tech"] .news-item {
+    border-bottom: 1px solid rgba(6, 182, 212, 0.15);
+    padding: 0.8rem 0;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: #a7f3d0; /* 綠色代碼字體 */
+    align-items: flex-start;
+}
+
+/* 日誌前綴符號自動注入 */
+html[data-theme="tech"] .news-item::before {
+    content: '[SPLAB@LOG] ~ $ ';
+    color: var(--accent);
+    white-space: nowrap;
+    margin-right: 5px;
+}
+
+html[data-theme="tech"] .news-date {
+    color: #38bdf8; /* 天藍色日期 */
+    min-width: 90px;
+}
+
+html[data-theme="tech"] .news-title {
+    color: #a7f3d0;
 }
 
 /* 科技風下的「代碼標題點綴」 */
@@ -1404,10 +1472,41 @@ html[data-theme="tech"] .tab-btn.active::after {
     box-shadow: 0 0 8px var(--accent);
 }
 
+/* 科技風下的課程大改版：【代碼陣列化】 */
+html[data-theme="tech"] .course-grid {
+    background: #040810;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+    font-family: var(--font-serif);
+}
 
-/* ✍️ 極簡人文風 (Minimalist Theme) 微調 - 大留白與去卡片化 */
+html[data-theme="tech"] .course-box h3 {
+    color: var(--accent);
+    font-size: 1.1rem;
+    border-bottom: 1px dashed rgba(6, 182, 212, 0.2);
+}
+
+html[data-theme="tech"] .course-list li {
+    font-size: 0.9rem;
+    padding-left: 0;
+}
+
+html[data-theme="tech"] .course-list li::before {
+    content: '"';
+    color: var(--accent);
+}
+
+html[data-theme="tech"] .course-list li::after {
+    content: '",';
+    color: var(--accent);
+    margin-left: 2px;
+}
+
+
+/* ✍️ 極簡人文風 (Minimalist Theme) 微調 - 大留白、黑白肖像與多欄排版 */
 html[data-theme="minimalist"] body {
-    line-height: 1.8;
+    line-height: 1.85;
     letter-spacing: 0.04em;
 }
 
@@ -1487,13 +1586,14 @@ html[data-theme="minimalist"] .professor-intro {
     flex-direction: column;
     text-align: center;
     align-items: center;
-    gap: 2.5rem;
+    gap: 3rem;
     margin-bottom: 5rem;
 }
 
+/* 藝術黑白肖像照片 */
 html[data-theme="minimalist"] .prof-img-container {
-    width: 200px;
-    height: 250px;
+    width: 180px;
+    height: 230px;
     border-radius: 0; /* 直角 */
     border: 1px solid var(--border);
     padding: 6px;
@@ -1501,24 +1601,40 @@ html[data-theme="minimalist"] .prof-img-container {
     box-shadow: none;
 }
 
+html[data-theme="minimalist"] .prof-img {
+    filter: grayscale(100%) contrast(1.1); /* 純黑白人文質感 */
+    border-radius: 0;
+}
+
+/* 簡介文字大改版：【雙欄報紙排版】 */
 html[data-theme="minimalist"] .prof-details {
-    max-width: 800px;
+    max-width: 900px;
+}
+
+html[data-theme="minimalist"] .prof-details h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 html[data-theme="minimalist"] .prof-details p {
+    column-count: 2; /* 雙欄排版 */
+    column-gap: 3rem;
+    column-rule: 1px solid var(--border); /* 中間細分割線 */
     text-align: justify;
     text-justify: inter-word;
+    font-size: 0.98rem;
+    line-height: 1.85;
 }
 
 html[data-theme="minimalist"] .specialties {
     justify-content: center;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 /* 極簡風網格重構：改為「單欄垂直流排版 (Single Column Flow)」 */
 html[data-theme="minimalist"] .grid-2col {
     grid-template-columns: 1fr; /* 單欄 */
-    gap: 5rem; /* 大留白間距 */
+    gap: 6rem; /* 大留白間距 */
 }
 
 /* 極簡風下的「完全去卡片化 (De-cardification)」 */
@@ -1536,6 +1652,29 @@ html[data-theme="minimalist"] .card:hover {
     transform: none; /* 移除 Hover 位移 */
     box-shadow: none;
     border-bottom-color: var(--primary); /* Hover 僅讓底線變深 */
+}
+
+/* 極簡風最新消息：重構為【精美書籍目錄索引】 */
+html[data-theme="minimalist"] .news-item {
+    border-bottom: 1px solid var(--border);
+    border-bottom-style: dashed; /* 虛線 */
+    padding: 1.2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+html[data-theme="minimalist"] .news-date {
+    color: var(--accent);
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    min-width: auto;
+    order: 2; /* 日期靠右 */
+}
+
+html[data-theme="minimalist"] .news-title {
+    color: var(--text-dark);
+    order: 1; /* 標題靠左 */
 }
 
 /* 極簡風下的「精緻水平分割標題」 */
@@ -1585,12 +1724,6 @@ html[data-theme="minimalist"] .timeline-item::before {
     box-shadow: none;
 }
 
-/* 最新消息項目改為虛線分割 */
-html[data-theme="minimalist"] .news-item {
-    border-bottom-style: dashed;
-    padding: 1.2rem 0;
-}
-
 /* 極簡風 Logo 與 導覽列 */
 html[data-theme="minimalist"] .school-logo,
 html[data-theme="minimalist"] header svg {
@@ -1624,6 +1757,31 @@ html[data-theme="minimalist"] .filter-btn.active {
 html[data-theme="minimalist"] .submit-btn {
     border-radius: 0;
 }
+
+/* 極簡風下的課程大改版：【書籍目錄雙列】 */
+html[data-theme="minimalist"] .course-grid {
+    background: transparent;
+    border: none;
+    padding: 0;
+    gap: 4rem;
+}
+
+html[data-theme="minimalist"] .course-box h3 {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+html[data-theme="minimalist"] .course-list li {
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 0;
+}
+
+html[data-theme="minimalist"] .course-list li::before {
+    display: none; /* 移除點點 */
+}
+
 
 
 
