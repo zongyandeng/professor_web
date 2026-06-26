@@ -199,6 +199,24 @@ function initThemeSwitcher() {
     // 注入到 body 最前面
     document.body.insertAdjacentHTML('afterbegin', switcherHTML);
 
+    // 動態注入導覽列品牌 Logo 區塊 (供 Tech/Minimalist 隱藏舊 Header 後使用)
+    const navContainer = document.querySelector('.nav-container');
+    if (navContainer && !document.querySelector('.nav-brand')) {
+        const brandHTML = `
+            <a href="index.html" class="nav-brand" aria-label="回到首頁">
+                <svg viewBox="0 0 100 100" style="width: 36px; height: 36px; flex-shrink: 0;" aria-hidden="true">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3" opacity="0.2"/>
+                    <path d="M15 50 L32 50 L42 20 L52 80 L62 40 L70 55 L75 50 L85 50" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="nav-brand-text">
+                    <h4>訊號處理實驗室</h4>
+                    <p>NTNU SPLAB</p>
+                </div>
+            </a>
+        `;
+        navContainer.insertAdjacentHTML('afterbegin', brandHTML);
+    }
+
     const switcherWrapper = document.querySelector('.theme-switcher-wrapper');
     const triggerBtn = document.querySelector('.theme-trigger-btn');
     const optionBtns = document.querySelectorAll('.theme-option-btn');

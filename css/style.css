@@ -958,6 +958,50 @@ a {
     }
 }
 
+    .footer-logo {
+        flex-direction: column;
+    }
+}
+
+/* ==========================================================================
+   導覽列品牌 Logo 基礎樣式 (Nav Brand Base Style)
+   ========================================================================== */
+.nav-brand {
+    display: none; /* 預設在經典學術風下隱藏，因為經典風有頂部大頁首 */
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-light);
+    transition: opacity 0.3s ease;
+}
+
+.nav-brand:hover {
+    opacity: 0.9;
+}
+
+.nav-brand-logo {
+    color: var(--accent);
+    filter: drop-shadow(0 0 3px rgba(245, 158, 11, 0.3));
+}
+
+.nav-brand-text h4 {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.nav-brand-text p {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+    margin: 0;
+    text-transform: uppercase;
+}
+
 /* ==========================================================================
    風格切換控制面板 (Theme Switcher) - 修正配色與對比度 Bug
    ========================================================================== */
@@ -978,7 +1022,7 @@ a {
     border-radius: 50%;
     background: var(--bg-card); /* 使用 bg-card，保證背景足夠亮或適當暗 */
     border: 2px solid var(--accent); /* 始終帶有主題強調色邊框，極其醒目 */
-    color: var(--text-dark); /* 使用 text-dark 確保在深淺色背景下都是高對比 */
+    color: var(--text-dark); /* 使用 text-dark 確保在任何主題背景下都是高對比 */
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.15), 0 0 4px var(--accent);
     cursor: pointer;
     display: flex;
@@ -1096,6 +1140,42 @@ html[data-theme="tech"] body {
         radial-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px);
     background-size: 32px 32px;
     background-position: 0 0, 16px 16px;
+    padding-top: 70px; /* 置頂導覽列高度 */
+}
+
+/* 科技風頂部與導覽列融合重構 */
+html[data-theme="tech"] .header-wrapper {
+    display: none !important; /* 隱藏頂部雙層大 Header */
+}
+
+html[data-theme="tech"] .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="tech"] .nav-container {
+    justify-content: space-between; /* Logo 左，連結右 */
+    padding: 0 2.5rem;
+    height: 70px;
+}
+
+html[data-theme="tech"] .nav-brand {
+    display: flex; /* 顯示導覽列 Logo */
+    color: var(--accent);
+}
+
+html[data-theme="tech"] .nav-brand-text p {
+    color: var(--text-muted);
+}
+
+html[data-theme="tech"] .nav-links a {
+    font-size: 0.95rem;
 }
 
 /* 科技風 RWD/Logo 處理 */
@@ -1116,13 +1196,83 @@ html[data-theme="tech"] footer svg path {
     stroke: var(--accent) !important;
 }
 
+/* 科技風雙欄 Hero Banner + 動態頻譜波形 */
 html[data-theme="tech"] .hero-banner {
-    background-image: linear-gradient(rgba(10, 15, 30, 0.85), rgba(10, 15, 30, 0.85)), url('../images/lab-hero.png');
+    height: 420px;
+    background-image: linear-gradient(rgba(10, 15, 30, 0.9), rgba(10, 15, 30, 0.9)), url('../images/lab-hero.png');
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
 }
 
-html[data-theme="tech"] .main-nav.scrolled {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    border-bottom-color: rgba(6, 182, 212, 0.3);
+html[data-theme="tech"] .hero-banner .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 3rem;
+}
+
+html[data-theme="tech"] .hero-content {
+    max-width: 58%;
+}
+
+html[data-theme="tech"] .hero-content h2 {
+    font-family: var(--font-serif); /* 等寬字體 */
+    font-size: 2.2rem;
+    line-height: 1.4;
+}
+
+html[data-theme="tech"] .hero-content h2::before {
+    content: 'SPLAB:~$ ';
+    color: var(--text-muted);
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+html[data-theme="tech"] .hero-content p {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+/* 利用虛擬元素繪製跳動頻譜動畫 */
+html[data-theme="tech"] .hero-banner .container::after {
+    content: '';
+    width: 32%;
+    height: 180px;
+    display: block;
+    background: linear-gradient(90deg, 
+        var(--accent) 0%, var(--accent) 8%, transparent 8%, 
+        var(--accent) 10%, var(--accent) 18%, transparent 18%,
+        var(--accent) 20%, var(--accent) 28%, transparent 28%,
+        var(--accent) 30%, var(--accent) 38%, transparent 38%,
+        var(--accent) 40%, var(--accent) 48%, transparent 48%,
+        var(--accent) 50%, var(--accent) 58%, transparent 58%,
+        var(--accent) 60%, var(--accent) 68%, transparent 68%,
+        var(--accent) 70%, var(--accent) 78%, transparent 78%,
+        var(--accent) 80%, var(--accent) 88%, transparent 88%,
+        var(--accent) 90%, var(--accent) 98%, transparent 98%
+    );
+    background-size: 100% 100%;
+    mask-image: linear-gradient(to top, white 20%, rgba(255, 255, 255, 0.1) 100%);
+    -webkit-mask-image: linear-gradient(to top, white 20%, rgba(255, 255, 255, 0.1) 100%);
+    animation: signalWave 2.2s infinite ease-in-out alternate;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 10px var(--accent));
+}
+
+@keyframes signalWave {
+    0% {
+        clip-path: polygon(0 40%, 10% 20%, 20% 70%, 30% 35%, 40% 85%, 50% 15%, 60% 65%, 70% 25%, 80% 90%, 90% 45%, 100% 55%, 100% 100%, 0 100%);
+    }
+    50% {
+        clip-path: polygon(0 65%, 10% 85%, 20% 35%, 30% 75%, 40% 25%, 50% 95%, 60% 45%, 70% 85%, 80% 15%, 90% 65%, 100% 35%, 100% 100%, 0 100%);
+    }
+    100% {
+        clip-path: polygon(0 35%, 10% 45%, 20% 85%, 30% 25%, 40% 65%, 50% 45%, 60% 95%, 70% 35%, 80% 75%, 90% 15%, 100% 65%, 100% 100%, 0 100%);
+    }
 }
 
 /* 科技風下的「全新卡片設計」 */
@@ -1146,7 +1296,7 @@ html[data-theme="tech"] .card::before {
     background: var(--accent);
     box-shadow: 0 0 10px var(--accent);
     transition: width 0.4s ease, left 0.4s ease;
-    opacity: 1; /* 始終啟用 */
+    opacity: 1;
 }
 
 html[data-theme="tech"] .card:hover::before {
@@ -1158,6 +1308,45 @@ html[data-theme="tech"] .card:hover {
     box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
     border-color: rgba(6, 182, 212, 0.4);
     transform: translateY(-5px);
+}
+
+/* 科技風教授簡介區：佈局左右對調 row-reverse */
+html[data-theme="tech"] .professor-intro {
+    flex-direction: row-reverse;
+}
+
+html[data-theme="tech"] .prof-img-container {
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 電子雷達掃描線動畫 */
+html[data-theme="tech"] .prof-img-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 48%, var(--accent) 50%, transparent 52%);
+    background-size: 100% 200%;
+    animation: radarScan 5s linear infinite;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+@keyframes radarScan {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 200%; }
+}
+
+/* 科技風下網格結構改為「非對稱網格排版」 */
+html[data-theme="tech"] .grid-2col {
+    grid-template-columns: 1fr 1.35fr; /* 非對稱 */
+    gap: 3rem;
 }
 
 /* 科技風下的「代碼標題點綴」 */
@@ -1220,6 +1409,116 @@ html[data-theme="tech"] .tab-btn.active::after {
 html[data-theme="minimalist"] body {
     line-height: 1.8;
     letter-spacing: 0.04em;
+}
+
+/* 極簡風頂部與導覽列融合重構 */
+html[data-theme="minimalist"] .header-wrapper {
+    display: none !important; /* 隱藏頂部大頁首 */
+}
+
+html[data-theme="minimalist"] .main-nav {
+    background: var(--bg-main);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0;
+}
+
+html[data-theme="minimalist"] .main-nav.scrolled {
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--primary);
+    box-shadow: none;
+}
+
+html[data-theme="minimalist"] .nav-container {
+    justify-content: space-between; /* 兩端對齊 */
+    padding: 0 2rem;
+    height: 70px;
+}
+
+html[data-theme="minimalist"] .nav-brand {
+    display: flex; /* 顯示 Logo 區 */
+    color: var(--primary);
+}
+
+html[data-theme="minimalist"] .nav-brand-text p {
+    color: var(--text-muted);
+}
+
+/* 極簡風純文字 Hero Banner，大留白、無圖、置中 */
+html[data-theme="minimalist"] .hero-banner {
+    background-image: none !important; /* 移除大圖背景 */
+    background-color: var(--bg-main) !important;
+    height: 330px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+html[data-theme="minimalist"] .hero-banner .container {
+    max-width: 850px;
+    margin: 0 auto;
+    display: block;
+}
+
+html[data-theme="minimalist"] .hero-content {
+    max-width: 100%;
+}
+
+html[data-theme="minimalist"] .hero-content h2 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+html[data-theme="minimalist"] .hero-content p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* 極簡風簡介區：垂直單欄置中排版 column */
+html[data-theme="minimalist"] .professor-intro {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+}
+
+html[data-theme="minimalist"] .prof-img-container {
+    width: 200px;
+    height: 250px;
+    border-radius: 0; /* 直角 */
+    border: 1px solid var(--border);
+    padding: 6px;
+    background: #fff;
+    box-shadow: none;
+}
+
+html[data-theme="minimalist"] .prof-details {
+    max-width: 800px;
+}
+
+html[data-theme="minimalist"] .prof-details p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+html[data-theme="minimalist"] .specialties {
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* 極簡風網格重構：改為「單欄垂直流排版 (Single Column Flow)」 */
+html[data-theme="minimalist"] .grid-2col {
+    grid-template-columns: 1fr; /* 單欄 */
+    gap: 5rem; /* 大留白間距 */
 }
 
 /* 極簡風下的「完全去卡片化 (De-cardification)」 */
@@ -1310,37 +1609,6 @@ html[data-theme="minimalist"] footer svg path {
     stroke: var(--text-muted) !important;
 }
 
-html[data-theme="minimalist"] .main-nav {
-    background: var(--bg-main);
-    border-bottom: 1px solid var(--border);
-}
-
-html[data-theme="minimalist"] .main-nav.scrolled {
-    background: var(--glass-bg);
-    border-bottom: 1px solid var(--primary);
-    box-shadow: none;
-}
-
-html[data-theme="minimalist"] .prof-img-container {
-    border-radius: 0;
-    border: 1px solid var(--border);
-    box-shadow: none;
-}
-
-html[data-theme="minimalist"] .hero-banner {
-    background-image: linear-gradient(rgba(242, 240, 236, 0.92), rgba(242, 240, 236, 0.92)), url('../images/lab-hero.png');
-    color: var(--text-dark);
-    border-bottom: 1px solid var(--border);
-}
-
-html[data-theme="minimalist"] .hero-content p {
-    color: var(--text-muted);
-}
-
-html[data-theme="minimalist"] .hero-content h2 {
-    color: var(--primary);
-}
-
 html[data-theme="minimalist"] .tab-btn.active::after {
     height: 2px;
 }
@@ -1356,5 +1624,6 @@ html[data-theme="minimalist"] .filter-btn.active {
 html[data-theme="minimalist"] .submit-btn {
     border-radius: 0;
 }
+
 
 
