@@ -163,6 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
  * 初始化風格切換器 (Theme Switcher)
  */
 function initThemeSwitcher() {
+    // 防止重複注入
+    if (document.querySelector('.theme-switcher-wrapper')) return;
+
     // 建立風格切換器的 HTML
     const switcherHTML = `
         <div class="theme-switcher-wrapper">
