@@ -1,4 +1,13 @@
+// 立即執行：套用儲存的風格以防止頁面加載閃爍
+(function() {
+    const savedTheme = localStorage.getItem('lab-theme') || 'classic';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. 初始化風格切換器
+    initThemeSwitcher();
+
     // 1. 導覽列滾動效果
     const nav = document.querySelector('.main-nav');
     if (nav) {
@@ -149,3 +158,112 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+/**
+ * 初始化風格切換器 (Theme Switcher)
+ */
+function initThemeSwitcher() {
+    // 建立風格切換器的 HTML
+    const switcherHTML = `
+        <div class="theme-switcher-wrapper">
+            <button class="theme-trigger-btn" aria-label="切換網頁風格">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 14.7255 3.09032 17.1962 4.85857 19C5.03445 19.1759 5.09901 19.431 5.02108 19.6749L4.5 21.3033C4.38386 21.6662 4.70732 22 5.0886 22H12Z"/>
+                    <circle cx="7.5" cy="9" r="1.5" fill="currentColor"/>
+                    <circle cx="11.5" cy="6" r="1.5" fill="currentColor"/>
+                    <circle cx="16.5" cy="8" r="1.5" fill="currentColor"/>
+                    <circle cx="15.5" cy="13" r="1.5" fill="currentColor"/>
+                </svg>
+            </button>
+            <div class="theme-menu">
+                <div class="theme-menu-title">風格展示切換</div>
+                <button class="theme-option-btn" data-theme-value="classic">
+                    <span class="theme-dot classic-dot"></span>
+                    <span class="theme-name">🏛️ 經典學術</span>
+                </button>
+                <button class="theme-option-btn" data-theme-value="tech">
+                    <span class="theme-dot tech-dot"></span>
+                    <span class="theme-name">⚡ 現代科技</span>
+                </button>
+                <button class="theme-option-btn" data-theme-value="minimalist">
+                    <span class="theme-dot minimalist-dot"></span>
+                    <span class="theme-name">✍️ 極簡人文</span>
+                </button>
+            </div>
+        </div>
+    `;
+
+    // 注入到 body 最前面
+    document.body.insertAdjacentHTML('afterbegin', switcherHTML);
+
+    const switcherWrapper = document.querySelector('.theme-switcher-wrapper');
+    const triggerBtn = document.querySelector('.theme-trigger-btn');
+    const optionBtns = document.querySelectorAll('.theme-option-btn');
+
+    if (!switcherWrapper || !triggerBtn || optionBtns.length === 0) return;
+
+    // 讀取當前設定的主題並標記為 active
+    const currentTheme = localStorage.getItem('lab-theme') || 'classic';
+    optionBtns.forEach(btn => {
+        if (btn.getAttribute('data-theme-value') === currentTheme) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    // 點擊觸發按鈕展開/收合選單
+    triggerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        switcherWrapper.classList.toggle('active');
+        triggerBtn.classList.toggle('open');
+    });
+
+    // 點擊其他地方收合選單
+    document.addEventListener('click', () => {
+        switcherWrapper.classList.remove('active');
+        triggerBtn.classList.remove('open');
+    });
+
+    // 阻止點擊選單內部時收合
+    const themeMenu = document.querySelector('.theme-menu');
+    if (themeMenu) {
+        themeMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+
+    // 風格選項按鈕點擊事件
+    optionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTheme = btn.getAttribute('data-theme-value');
+            const activeTheme = localStorage.getItem('lab-theme') || 'classic';
+            
+            if (targetTheme === activeTheme) return;
+
+            // 加上切換動畫 class
+            document.documentElement.classList.add('theme-transitioning');
+
+            // 設定新主題
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            localStorage.setItem('lab-theme', targetTheme);
+
+            // 更新選項 active 狀態
+            optionBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // 觸發自定義事件，讓可能需要的第三方組件知道主題變了
+            window.dispatchEvent(new CustomEvent('lab-theme-change', { detail: targetTheme }));
+
+            // 動畫結束後移除 class
+            setTimeout(() => {
+                document.documentElement.classList.remove('theme-transitioning');
+            }, 400);
+
+            // 收合選單
+            switcherWrapper.classList.remove('active');
+            triggerBtn.classList.remove('open');
+        });
+    });
+}
+
