@@ -348,7 +348,7 @@ html[data-theme="classic"] .main-nav.scrolled .nav-links li.active a {
 
 .nav-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     height: 60px;
 }
