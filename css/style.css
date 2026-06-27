@@ -360,7 +360,7 @@ html[data-theme="classic"] .main-nav.scrolled .nav-links li.active a {
 
 .nav-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 60px;
 }
@@ -1117,12 +1117,16 @@ html[data-theme="classic"] .main-nav.scrolled .nav-links li.active a {
    撠汗????Logo ?箇?璅?? (Nav Brand Base Style)
    ========================================================================== */
 .nav-brand {
-    display: none; /* ?身?函??詨飛銵◢銝???蝬憸冽??憭折?擐?*/
+    display: flex; /* 預設改為彈性水平排版顯示 */
     align-items: center;
     gap: 12px;
     text-decoration: none;
     color: var(--text-light);
     transition: opacity 0.3s ease;
+}
+
+.nav-brand svg {
+    color: var(--accent); /* SVG 圖示預設使用金黃色，與 Header 呼應 */
 }
 
 .nav-brand:hover {
