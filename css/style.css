@@ -2679,3 +2679,55 @@ html[data-theme="moonlake"] .site-footer p {
 
 
 
+
+
+/* ==========================================================================
+   ? ?∪???憸?(Mirror Fashion Theme) RWD ?踵?撘??   ========================================================================== */
+@media (max-width: 768px) {
+    html[data-theme="mirror"] .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        height: 60px;
+        padding: 0 1.5rem;
+    }
+    
+    html[data-theme="mirror"] .nav-brand {
+        position: static;
+        transform: none;
+    }
+    
+    html[data-theme="mirror"] .nav-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    html[data-theme="mirror"] .nav-links li:nth-child(2) {
+        margin-right: 0px !important; /* ???宏?支葉?之?? */
+    }
+    
+    html[data-theme="mirror"] .hero-banner {
+        height: auto;
+        padding: 3rem 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    html[data-theme="mirror"] .hero-banner .container {
+        flex-direction: column-reverse; /* ???犖?銝?璅??其? */
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    html[data-theme="mirror"] .hero-content {
+        max-width: 100%;
+    }
+    
+    html[data-theme="mirror"] .hero-banner .prof-img-container {
+        width: 220px;
+        height: 280px;
+        transform: rotate(0deg) !important; /* ?????暹??脫迫頝? */
+    }
+}
