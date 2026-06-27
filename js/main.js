@@ -157,6 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1200);
         });
     }
+
+    // 4. 初始化 DOM 佈局重構
+    initDOMRestructure();
 });
 
 /**
@@ -298,5 +301,98 @@ function initThemeSwitcher() {
             triggerBtn.classList.remove('open');
         });
     });
+}
+
+// ==========================================================================
+// 邏輯重組：DOM 佈局動態重塑 (Dynamic DOM Restructuring)
+// ==========================================================================
+
+let originalProfImgParent = null;
+let originalProfImgNextSibling = null;
+let originalHeroContentHTML = null;
+
+function initDOMRestructure() {
+    const profImgContainer = document.querySelector('.prof-img-container');
+    if (profImgContainer) {
+        originalProfImgParent = profImgContainer.parentElement;
+        originalProfImgNextSibling = profImgContainer.nextSibling;
+    }
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        originalHeroContentHTML = heroContent.innerHTML;
+    }
+
+    // 監聽主題變更自定義事件
+    window.addEventListener('lab-theme-change', (e) => {
+        domRestructure(e.detail);
+    });
+
+    // 第一次加載時手動執行一次
+    const currentTheme = localStorage.getItem('lab-theme') || 'classic';
+    domRestructure(currentTheme);
+}
+
+function domRestructure(theme) {
+    // 1. 還原 DOM 結構至經典學術風狀態
+    restoreDOM();
+
+    // 2. 根據不同主題執行深度重構
+    if (theme === 'mirror') {
+        applyMirrorDOM();
+    } else if (theme === 'ucore') {
+        applyUcoreDOM();
+    }
+}
+
+function restoreDOM() {
+    // 還原教授照片位置
+    const profImgContainer = document.querySelector('.prof-img-container');
+    if (profImgContainer && originalProfImgParent) {
+        if (originalProfImgNextSibling) {
+            originalProfImgParent.insertBefore(profImgContainer, originalProfImgNextSibling);
+        } else {
+            originalProfImgParent.appendChild(profImgContainer);
+        }
+    }
+
+    // 還原 Hero Content 內容
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent && originalHeroContentHTML !== null) {
+        heroContent.innerHTML = originalHeroContentHTML;
+    }
+}
+
+function applyMirrorDOM() {
+    // 1. 將教授照片移入 Hero 區的 container 內，作為右側時尚大圖
+    const profImgContainer = document.querySelector('.prof-img-container');
+    const heroContainer = document.querySelector('.hero-banner .container');
+    if (profImgContainer && heroContainer) {
+        heroContainer.appendChild(profImgContainer);
+    }
+
+    // 2. 修改首頁 Hero 的按鈕為括號時尚按鈕
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        const actionsHTML = `
+            <div class="mirror-hero-actions" style="margin-top: 2rem;">
+                <a href="contact.html" class="mirror-btn-bracket">( START FOR FREE )</a>
+            </div>
+        `;
+        heroContent.insertAdjacentHTML('beforeend', actionsHTML);
+    }
+}
+
+function applyUcoreDOM() {
+    // 在首頁 Hero Content 動態注入雙按鈕
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        const actionsHTML = `
+            <div class="ucore-hero-actions" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: flex-start; flex-wrap: wrap;">
+                <a href="research.html" class="ucore-btn-primary">查看專案實績</a>
+                <a href="contact.html" class="ucore-btn-secondary">了解核心技術</a>
+            </div>
+        `;
+        heroContent.insertAdjacentHTML('beforeend', actionsHTML);
+    }
 }
 

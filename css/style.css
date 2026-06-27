@@ -1788,112 +1788,7 @@ html[data-theme="minimalist"] .news-title {
     order: 1; /* 標題靠左 */
 }
 
-/* 極簡風下的「精緻水平分割標題」 */
-html[data-theme="minimalist"] .section-title {
-    font-size: 1.6rem;
-    letter-spacing: 0.08em;
-    border-bottom: 1px solid var(--primary); /* 橫跨的細線 */
-    padding-bottom: 0.8rem;
-    margin-bottom: 2rem;
-    font-weight: 500;
-}
-
-html[data-theme="minimalist"] .section-title::after {
-    display: none; /* 移除原本的黃色小短線 */
-}
-
-/* 極簡風下的「方正細框標籤」 */
-html[data-theme="minimalist"] .spec-badge {
-    background-color: transparent;
-    color: var(--text-dark);
-    border: 1px solid var(--border);
-    border-radius: 0; /* 完全方正 */
-    padding: 0.3rem 0.8rem;
-    font-size: 0.85rem;
-    font-weight: 400;
-    transition: all 0.2s;
-}
-
-html[data-theme="minimalist"] .spec-badge:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background-color: var(--accent-light);
-}
-
-/* 極簡風時間軸改為「精緻空心圓」 */
-html[data-theme="minimalist"] .timeline-item {
-    border-left: 1px solid var(--border);
-}
-
-html[data-theme="minimalist"] .timeline-item::before {
-    background-color: var(--bg-main) !important; /* 空心 */
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    left: -6px;
-    box-shadow: none;
-}
-
-/* 極簡風 Logo 與 導覽列 */
-html[data-theme="minimalist"] .school-logo,
-html[data-theme="minimalist"] header svg {
-    filter: brightness(0) contrast(1.5); /* 轉為純黑色 */
-}
-
-html[data-theme="minimalist"] header svg path {
-    stroke: var(--primary) !important;
-}
-
-html[data-theme="minimalist"] header svg circle[fill="#f59e0b"] {
-    fill: var(--accent) !important;
-}
-
-html[data-theme="minimalist"] footer svg path {
-    stroke: var(--text-muted) !important;
-}
-
-html[data-theme="minimalist"] .tab-btn.active::after {
-    height: 2px;
-}
-
-html[data-theme="minimalist"] .filter-btn {
-    border-radius: 0; /* 方正 */
-}
-
-html[data-theme="minimalist"] .filter-btn.active {
-    box-shadow: none;
-}
-
-html[data-theme="minimalist"] .submit-btn {
-    border-radius: 0;
-}
-
-/* 極簡風下的課程大改版：【書籍目錄雙列】 */
-html[data-theme="minimalist"] .course-grid {
-    background: transparent;
-    border: none;
-    padding: 0;
-    gap: 4rem;
-}
-
-html[data-theme="minimalist"] .course-box h3 {
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: var(--primary);
-    font-weight: 600;
-}
-
-html[data-theme="minimalist"] .course-list li {
-    border-bottom: 1px solid var(--border);
-    padding: 0.8rem 0;
-}
-
-html[data-theme="minimalist"] .course-list li::before {
-    display: none; /* 移除點點 */
-}
-
-/* ==========================================================================
+/* 極簡風下�/* ==========================================================================
    🌱 譽科智慧風 (Ucore AIoT Theme) 微調 - 智慧感測與綠能低功耗科技
    ========================================================================== */
 html[data-theme="ucore"] body {
@@ -1917,11 +1812,15 @@ html[data-theme="ucore"] .nav-links li.active a {
     color: var(--text-light) !important;
 }
 
+/* 雙按鈕 Hero 排版 */
 html[data-theme="ucore"] .hero-banner {
     background-image: linear-gradient(135deg, hsl(218, 55%, 12%) 0%, hsl(218, 50%, 20%) 100%);
     border-bottom: 3px solid var(--accent);
     position: relative;
     overflow: hidden;
+    height: 430px;
+    display: flex;
+    align-items: center;
 }
 
 /* 在 Hero Banner 加一個動態雷達波水位 SVG (透過偽元素模擬) */
@@ -1935,6 +1834,7 @@ html[data-theme="ucore"] .hero-banner::after {
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C150,100 350,20 500,60 C650,100 850,20 1000,60 C1150,100 1300,60 1400,60 L1400,120 L0,120 Z' fill='%23059669' opacity='0.15'/%3E%3Cpath d='M0,50 C200,90 400,30 600,70 C800,110 1000,30 1200,50 L1200,120 L0,120 Z' fill='%23059669' opacity='0.25'/%3E%3C/svg%3E") repeat-x;
     background-size: 1200px 60px;
     animation: ucoreWave 15s linear infinite;
+    pointer-events: none;
 }
 
 @keyframes ucoreWave {
@@ -1942,10 +1842,49 @@ html[data-theme="ucore"] .hero-banner::after {
     100% { background-position-x: 1200px; }
 }
 
+/* Ucore 雙按鈕注入樣式 */
+html[data-theme="ucore"] .ucore-btn-primary,
+html[data-theme="ucore"] .ucore-btn-secondary {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+html[data-theme="ucore"] .ucore-btn-primary {
+    background-color: var(--accent);
+    color: var(--text-light);
+    border: 1px solid var(--accent);
+}
+
+html[data-theme="ucore"] .ucore-btn-primary:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+html[data-theme="ucore"] .ucore-btn-secondary {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+html[data-theme="ucore"] .ucore-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-light);
+    transform: translateY(-2px);
+}
+
+/* AIoT 儀表板卡片樣式 */
 html[data-theme="ucore"] .card {
     border: 1px solid rgba(16, 185, 129, 0.15);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.03);
+    background-color: var(--bg-card);
 }
 
 html[data-theme="ucore"] .card:hover {
@@ -1988,6 +1927,24 @@ html[data-theme="ucore"] .news-date {
     font-weight: 600;
 }
 
+/* 滾動動畫漸入 */
+html[data-theme="ucore"] .card,
+html[data-theme="ucore"] .timeline-item,
+html[data-theme="ucore"] .course-box {
+    animation: ucoreFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes ucoreFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 html[data-theme="ucore"] header svg path {
     stroke: var(--accent) !important;
 }
@@ -2002,12 +1959,14 @@ html[data-theme="ucore"] footer svg path {
    ========================================================================== */
 html[data-theme="mirror"] body {
     padding-top: 70px;
+    background-color: var(--bg-main);
 }
 
 html[data-theme="mirror"] .header-wrapper {
     display: none !important;
 }
 
+/* 置中對稱導覽列結構 */
 html[data-theme="mirror"] .main-nav {
     position: fixed;
     top: 0;
@@ -2022,24 +1981,61 @@ html[data-theme="mirror"] .main-nav {
 }
 
 html[data-theme="mirror"] .nav-container {
-    justify-content: space-between;
-    padding: 0 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
     height: 70px;
+    padding: 0 3rem;
 }
 
 html[data-theme="mirror"] .nav-brand {
     display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     color: var(--accent);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
+    z-index: 10;
+}
+
+html[data-theme="mirror"] .nav-brand-text h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+html[data-theme="mirror"] .nav-brand-text p {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+}
+
+html[data-theme="mirror"] .nav-links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* 將第二個 li 與第三個 li 撐開，完美讓出正中央給 LOGO */
+html[data-theme="mirror"] .nav-links li:nth-child(2) {
+    margin-right: 280px;
 }
 
 html[data-theme="mirror"] .nav-links a {
     text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.15em;
-    font-weight: 500;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    font-weight: 600;
     color: var(--text-dark);
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+html[data-theme="mirror"] .nav-links a:hover {
+    color: var(--accent);
 }
 
 html[data-theme="mirror"] .nav-links li.active a {
@@ -2047,84 +2043,123 @@ html[data-theme="mirror"] .nav-links li.active a {
     border-bottom: 2px solid var(--accent);
 }
 
+/* Fashion 左右分割滿版 Hero */
 html[data-theme="mirror"] .hero-banner {
-    height: 400px;
-    background-color: var(--accent) !important;
-    background-image: linear-gradient(180deg, rgba(139, 0, 0, 0.6) 0%, rgba(10, 10, 10, 0.95) 100%);
+    height: 480px;
+    background-color: var(--bg-main) !important;
+    background-image: linear-gradient(180deg, rgba(139, 0, 0, 0.15) 0%, rgba(10, 10, 10, 0) 100%) !important;
     display: flex;
     align-items: center;
-    text-align: center;
     border-bottom: 1px solid var(--border);
+    margin-bottom: 5rem;
 }
 
 html[data-theme="mirror"] .hero-banner .container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
+    text-align: left;
     width: 100%;
+    gap: 4rem;
 }
 
 html[data-theme="mirror"] .hero-content {
-    max-width: 100%;
+    max-width: 60%;
 }
 
 html[data-theme="mirror"] .hero-content h2 {
-    font-size: 2.6rem;
-    font-weight: 700;
+    font-size: 2.8rem;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    line-height: 1.3;
+    line-height: 1.25;
     margin-bottom: 1.5rem;
-    color: var(--text-light);
+    color: var(--text-dark);
 }
 
 html[data-theme="mirror"] .hero-content p {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--text-muted);
     letter-spacing: 0.05em;
-    max-width: 800px;
-    margin: 0 auto;
+    line-height: 1.8;
 }
 
+/* 移動到 Hero 區的教授肖像樣式 - 時尚相框海報效果 */
+html[data-theme="mirror"] .hero-banner .prof-img-container {
+    width: 290px;
+    height: 360px;
+    flex-shrink: 0;
+    border: 8px solid #fff;
+    border-bottom: 30px solid #fff; /* 拍立得照片效果 */
+    border-radius: 4px;
+    overflow: hidden;
+    transform: rotate(2deg);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s;
+    background: #fff;
+}
+
+html[data-theme="mirror"] .hero-banner .prof-img-container:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 30px 60px rgba(139, 0, 0, 0.25);
+}
+
+html[data-theme="mirror"] .hero-banner .prof-img {
+    border-radius: 0px;
+    filter: grayscale(100%) contrast(1.2);
+    width: 100%;
+    height: 100%;
+    object-cover: cover;
+}
+
+/* 括號時尚按鈕 */
+html[data-theme="mirror"] .mirror-btn-bracket {
+    display: inline-block;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border: 1px solid var(--text-dark);
+    border-radius: 6px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: transparent;
+}
+
+html[data-theme="mirror"] .mirror-btn-bracket:hover {
+    background-color: var(--text-dark);
+    color: var(--bg-main);
+    letter-spacing: 0.22em; /* 括號往兩側展開 */
+}
+
+/* 鏡像時尚大圓角卡片 */
 html[data-theme="mirror"] .card {
     background-color: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2.5rem;
+    border-radius: 24px;
+    padding: 3rem;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s, box-shadow 0.5s;
     box-shadow: var(--shadow-md);
 }
 
 html[data-theme="mirror"] .card:hover {
     transform: translateY(-8px);
-    border-color: rgba(139, 0, 0, 0.4);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 0, 0, 0.15);
+    border-color: rgba(139, 0, 0, 0.35);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(139, 0, 0, 0.15);
 }
 
-html[data-theme="mirror"] .prof-img-container {
-    border-radius: 24px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: #000;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+/* 首頁簡介區（肖像移走後的文字調整） */
+html[data-theme="mirror"] .professor-intro {
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto 5rem;
 }
 
-html[data-theme="mirror"] .prof-img {
-    filter: grayscale(100%) contrast(1.15) brightness(0.9);
-    transition: filter 0.6s ease;
-    border-radius: 24px;
-}
-
-html[data-theme="mirror"] .professor-intro:hover .prof-img {
-    filter: grayscale(0%) contrast(1.05) brightness(1.0);
-}
-
-html[data-theme="mirror"] .prof-details h2 {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 700;
+html[data-theme="mirror"] .prof-details {
+    width: 100%;
 }
 
 html[data-theme="mirror"] .spec-badge {
@@ -2132,10 +2167,10 @@ html[data-theme="mirror"] .spec-badge {
     color: var(--text-dark);
     border: 1px solid var(--text-dark);
     border-radius: 30px;
-    padding: 0.5rem 1.2rem;
+    padding: 0.5rem 1.4rem;
     text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
     transition: all 0.3s;
 }
 
@@ -2147,8 +2182,8 @@ html[data-theme="mirror"] .spec-badge:hover {
 
 html[data-theme="mirror"] .section-title {
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 1.5rem;
+    letter-spacing: 0.18em;
+    font-size: 1.6rem;
     position: relative;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
@@ -2176,30 +2211,31 @@ html[data-theme="mirror"] .timeline-item::before {
 html[data-theme="mirror"] .course-box {
     background-color: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 2rem;
 }
 
 html[data-theme="mirror"] .course-box h3 {
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--accent);
 }
 
 html[data-theme="mirror"] .news-item {
     border-bottom: 1px solid var(--border);
-    padding: 1.2rem 0;
+    padding: 1.4rem 0;
 }
 
 html[data-theme="mirror"] .news-date {
     color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
 }
 
 html[data-theme="mirror"] .site-footer {
-    background-color: #050505;
+    background-color: #030303;
     border-top: 1px solid var(--border);
+    padding: 4rem 0;
 }
 
 html[data-theme="mirror"] header svg path {
@@ -2216,6 +2252,7 @@ html[data-theme="mirror"] footer svg path {
    ========================================================================== */
 html[data-theme="moonlake"] body {
     padding-top: 70px;
+    background-color: var(--bg-main);
 }
 
 html[data-theme="moonlake"] .header-wrapper {
@@ -2242,36 +2279,40 @@ html[data-theme="moonlake"] .nav-brand {
     display: flex;
     color: var(--primary);
     font-family: var(--font-sans);
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
 html[data-theme="moonlake"] .nav-links a {
     font-family: var(--font-serif);
     font-weight: 500;
     color: var(--primary);
-    padding: 0.5rem 1rem;
-    border: 1px solid transparent;
+    padding: 0.5rem 1.2rem;
+    border: 2px solid transparent;
+    transition: all 0.2s;
 }
 
 html[data-theme="moonlake"] .nav-links a:hover {
     background-color: var(--bg-card);
-    border: 1px solid var(--primary);
+    border: 2px solid var(--primary);
 }
 
 html[data-theme="moonlake"] .nav-links li.active a {
     background-color: var(--primary);
     color: var(--bg-main) !important;
-    border: 1px solid var(--primary);
+    border: 2px solid var(--primary);
 }
 
+/* 3D 模擬網格 Hero */
 html[data-theme="moonlake"] .hero-banner {
-    height: 360px;
+    height: 380px;
     background-color: var(--bg-card) !important;
     background-image: none !important;
     border-bottom: 2px solid var(--primary);
     display: flex;
     align-items: center;
     position: relative;
+    overflow: hidden;
 }
 
 /* 模仿 Moonlake 網格底色 */
@@ -2279,17 +2320,19 @@ html[data-theme="moonlake"] .hero-banner::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(var(--primary) 1px, transparent 1px);
-    background-size: 24px 24px;
-    opacity: 0.05;
+    background-image: 
+        linear-gradient(var(--primary) 1px, transparent 1px),
+        linear-gradient(90deg, var(--primary) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.04;
     pointer-events: none;
 }
 
 html[data-theme="moonlake"] .hero-content h2 {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
     font-family: var(--font-sans);
     font-weight: 800;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     color: var(--primary);
     margin-bottom: 1.2rem;
 }
@@ -2306,13 +2349,208 @@ html[data-theme="moonlake"] .hero-content p {
     color: var(--text-dark);
 }
 
+/* Moonlake 雙箭頭與按鈕 Hover 位移動態 */
+html[data-theme="moonlake"] .submit-btn,
+html[data-theme="moonlake"] .tab-btn,
+html[data-theme="moonlake"] .filter-btn {
+    position: relative;
+    border-radius: 0px !important;
+    border: 2px solid var(--primary) !important;
+    background-color: var(--bg-card);
+    color: var(--primary) ;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: none;
+    overflow: hidden;
+}
+
+html[data-theme="moonlake"] .submit-btn::before,
+html[data-theme="moonlake"] .tab-btn::before,
+html[data-theme="moonlake"] .filter-btn::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+html[data-theme="moonlake"] .submit-btn::after,
+html[data-theme="moonlake"] .tab-btn::after,
+html[data-theme="moonlake"] .filter-btn::after {
+    content: '←';
+    position: absolute;
+    right: -20px;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+html[data-theme="moonlake"] .submit-btn:hover,
+html[data-theme="moonlake"] .tab-btn:hover,
+html[data-theme="moonlake"] .filter-btn:hover {
+    padding-left: 2.2rem !important;
+    padding-right: 2.2rem !important;
+    background-color: var(--primary);
+    color: var(--bg-main);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--accent);
+}
+
+html[data-theme="moonlake"] .submit-btn:hover::before,
+html[data-theme="moonlake"] .tab-btn:hover::before,
+html[data-theme="moonlake"] .filter-btn:hover::before {
+    left: 10px;
+    opacity: 1;
+}
+
+html[data-theme="moonlake"] .submit-btn:hover::after,
+html[data-theme="moonlake"] .tab-btn:hover::after,
+html[data-theme="moonlake"] .filter-btn:hover::after {
+    right: 10px;
+    opacity: 1;
+}
+
+/* 月湖粗線框與實心黑影卡片 */
 html[data-theme="moonlake"] .card {
+    background-color: var(--bg-card);
+    border: 2px solid var(--primary);
+    border-radius: 0px;
+    padding: 2.5rem;
+    box-shadow: none;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+html[data-theme="moonlake"] .card:hover {
+    transform: translate(-6px, -6px);
+    box-shadow: 8px 8px 0px var(--primary);
+}
+
+/* 教授肖像框線與硬實心陰影 */
+html[data-theme="moonlake"] .prof-img-container {
+    border-radius: 0px;
+    border: 2px solid var(--primary);
+    padding: 6px;
+    background-color: var(--bg-card);
+    box-shadow: 6px 6px 0px var(--primary);
+}
+
+html[data-theme="moonlake"] .prof-img {
+    border-radius: 0px;
+    filter: contrast(1.1) brightness(1.02);
+}
+
+html[data-theme="moonlake"] .prof-details h2 {
+    font-family: var(--font-sans);
+    font-weight: 800;
+}
+
+html[data-theme="moonlake"] .prof-details h2::after {
+    content: ' ↳';
+}
+
+html[data-theme="moonlake"] .spec-badge {
+    background-color: var(--bg-main);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 0px;
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+}
+
+html[data-theme="moonlake"] .spec-badge:hover {
+    background-color: var(--primary);
+    color: var(--bg-main);
+}
+
+html[data-theme="moonlake"] .section-title {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.6rem;
+}
+
+html[data-theme="moonlake"] .section-title::after {
+    display: none;
+}
+
+html[data-theme="moonlake"] .timeline-item {
+    border-left: 2px solid var(--primary);
+}
+
+html[data-theme="moonlake"] .timeline-item::before {
+    background-color: var(--primary);
+    border: none;
+    width: 10px;
+    height: 10px;
+    left: -6px;
+    border-radius: 0;
+    transform: rotate(45deg);
+}
+
+html[data-theme="moonlake"] .course-grid {
+    gap: 2rem;
+}
+
+html[data-theme="moonlake"] .course-box {
     background-color: var(--bg-card);
     border: 2px solid var(--primary);
     border-radius: 0px;
     padding: 2rem;
     box-shadow: none;
-    transition: box-shadow 0.3s, transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+html[data-theme="moonlake"] .course-box:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px var(--primary);
+}
+
+html[data-theme="moonlake"] .course-box h3 {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.5rem;
+}
+
+html[data-theme="moonlake"] .course-list li {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    padding-left: 1.2rem;
+    border-bottom: 1px dashed rgba(26, 26, 26, 0.2);
+}
+
+html[data-theme="moonlake"] .course-list li::before {
+    content: '→';
+    color: var(--primary);
+    left: 0;
+}
+
+html[data-theme="moonlake"] .news-item {
+    border-bottom: 2px dashed var(--primary);
+    padding: 1.2rem 0;
+    font-family: var(--font-serif);
+}
+
+html[data-theme="moonlake"] .news-date {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+html[data-theme="moonlake"] .site-footer {
+    background-color: var(--bg-card);
+    border-top: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 4rem 0;
+}
+
+html[data-theme="moonlake"] .footer-logo svg path {
+    stroke: var(--primary) !important;
+}
+
+html[data-theme="moonlake"] .site-footer p {
+    color: var(--primary);
 }
 
 html[data-theme="moonlake"] .card:hover {
