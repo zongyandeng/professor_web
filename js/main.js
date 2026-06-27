@@ -192,6 +192,18 @@ function initThemeSwitcher() {
                     <span class="theme-dot minimalist-dot"></span>
                     <span class="theme-name">✍️ 極簡人文</span>
                 </button>
+                <button class="theme-option-btn" data-theme-value="ucore">
+                    <span class="theme-dot ucore-dot"></span>
+                    <span class="theme-name">🌱 譽科智慧</span>
+                </button>
+                <button class="theme-option-btn" data-theme-value="mirror">
+                    <span class="theme-dot mirror-dot"></span>
+                    <span class="theme-name">🌹 鏡像時尚</span>
+                </button>
+                <button class="theme-option-btn" data-theme-value="moonlake">
+                    <span class="theme-dot moonlake-dot"></span>
+                    <span class="theme-name">🌙 月湖物理</span>
+                </button>
             </div>
         </div>
     `;
