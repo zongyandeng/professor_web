@@ -304,6 +304,41 @@ a {
     color: var(--text-dark);
 }
 
+/* 經典學術版滾動時，品牌 Logo 的顯示與排版 */
+html[data-theme="classic"] .main-nav.scrolled .nav-brand {
+    display: flex;
+}
+
+html[data-theme="classic"] .main-nav.scrolled .nav-container {
+    justify-content: space-between;
+}
+
+/* 經典學術版滾動時，確保品牌 Logo 顏色與背景高對比 */
+html[data-theme="classic"] .main-nav.scrolled .nav-brand svg {
+    color: var(--primary); /* SVG 圖示使用主色（深藍） */
+}
+
+html[data-theme="classic"] .main-nav.scrolled .nav-brand-text h4 {
+    color: var(--text-dark); /* 實驗室名稱使用深色文字 */
+}
+
+html[data-theme="classic"] .main-nav.scrolled .nav-brand-text p {
+    color: var(--text-muted); /* 英文簡稱使用半透明深色 */
+}
+
+/* 經典學術版滾動時，導覽列連結的高對比顏色設定 */
+html[data-theme="classic"] .main-nav.scrolled .nav-links a {
+    color: var(--text-dark); /* 預設深色文字 */
+}
+
+html[data-theme="classic"] .main-nav.scrolled .nav-links a:hover {
+    color: var(--accent-hover) !important; /* Hover 時使用較深的橘黃色以利辨識 */
+}
+
+html[data-theme="classic"] .main-nav.scrolled .nav-links li.active a {
+    color: var(--primary) !important; /* 啟用項目使用主色（深藍），並保留金黃色底線，兼顧對比與美觀 */
+}
+
 .nav-container {
     display: flex;
     justify-content: center;
