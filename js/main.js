@@ -197,6 +197,10 @@ function initThemeSwitcher() {
                     <span class="theme-dot ucore-dot"></span>
                     <span class="theme-name">🌱 譽科智慧</span>
                 </button>
+                <button class="theme-option-btn" data-theme-value="company">
+                    <span class="theme-dot company-dot"></span>
+                    <span class="theme-name">🏢 譽科科技</span>
+                </button>
                 <button class="theme-option-btn" data-theme-value="mirror">
                     <span class="theme-dot mirror-dot"></span>
                     <span class="theme-name">🌹 鏡像時尚</span>
@@ -291,7 +295,7 @@ function initThemeSwitcher() {
 
             // 計算重導向的目標 HTML 檔案名稱
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            let basePageName = currentPage.replace(/_(ucore|mirror|moonlake)\.html$/, '.html');
+            let basePageName = currentPage.replace(/_(ucore|mirror|moonlake|company)\.html$/, '.html');
             if (basePageName === '') basePageName = 'index.html';
             
             let targetPage = basePageName;
@@ -301,6 +305,8 @@ function initThemeSwitcher() {
                 targetPage = basePageName.replace('.html', '_mirror.html');
             } else if (targetTheme === 'moonlake') {
                 targetPage = basePageName.replace('.html', '_moonlake.html');
+            } else if (targetTheme === 'company') {
+                targetPage = basePageName.replace('.html', '_company.html');
             }
 
             // 延遲重導向，讓過渡動畫播放
