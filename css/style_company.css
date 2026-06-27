@@ -87,29 +87,68 @@ html[data-theme="company"] .school-info p {
     font-weight: 400;
 }
 
+/* 隱藏原本白色底的舊導覽列 */
 html[data-theme="company"] .main-nav {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-sm);
+    display: none !important;
 }
 
-html[data-theme="company"] .nav-links a {
-    color: var(--text-dark);
-    font-weight: 600;
-    transition: all 0.3s ease;
+/* 合併後的新 Header 導覽列樣式 */
+.header-nav {
+    display: block;
 }
 
-html[data-theme="company"] .nav-links a:hover {
-    color: var(--primary);
+.header-nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
-html[data-theme="company"] .nav-links li.active a {
-    background-color: var(--primary);
-    color: #0d0d0d !important;
-    border-radius: 20px;
+.header-nav-links a {
+    color: #b8c1ec;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.05rem;
     padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-nav-links a:hover {
+    color: #fffffe;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.header-nav-links li.active a {
+    background-color: var(--primary) !important;
+    color: #0d0d0d !important;
+    box-shadow: 0 4px 10px rgba(255, 142, 60, 0.25);
+}
+
+/* RWD 適應手機版排版 */
+@media (max-width: 768px) {
+    html[data-theme="company"] .header-wrapper .school-info {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+    }
+    
+    .header-nav {
+        width: 100%;
+    }
+    
+    .header-nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.3rem;
+    }
+    
+    .header-nav-links a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
 }
 
 /* Hero Banner 區塊 */

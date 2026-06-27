@@ -13,13 +13,26 @@
     <header class="header-wrapper">
         <div class="container school-info" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
             <div style="display: flex; align-items: center; gap: 1.5rem;">
-                <!-- 科技風電波/雷達 Logo -->
-                <svg viewBox="0 0 100 100" style="width: 70px; height: 70px; flex-shrink: 0;" aria-label="Ucore Logo">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.15"/>
-                    <circle cx="50" cy="50" r="30" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.3"/>
-                    <path d="M15 50 C 35 10, 65 90, 85 50" fill="none" stroke="var(--primary)" stroke-width="5" stroke-linecap="round"/>
-                    <circle cx="50" cy="50" r="6" fill="var(--primary)"/>
-                    <path d="M40 50 A 10 10 0 0 1 60 50" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                <!-- 師大校徽 SVG Logo -->
+                <svg viewBox="0 0 100 100" style="width: 70px; height: 70px; flex-shrink: 0;" aria-label="NTNU Logo">
+                    <circle cx="50" cy="50" r="46" fill="none" stroke="var(--primary)" stroke-width="1.5" opacity="0.4"/>
+                    <!-- 三個對稱的木鐸 -->
+                    <g>
+                        <path d="M50 10 L50 25 M42 27 C 42 22, 58 22, 58 27 L60 41 C 60 43, 40 43, 40 41 Z" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M39 41 C 43 43.5, 57 43.5, 61 41" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"/>
+                    </g>
+                    <g transform="rotate(120 50 50)">
+                        <path d="M50 10 L50 25 M42 27 C 42 22, 58 22, 58 27 L60 41 C 60 43, 40 43, 40 41 Z" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M39 41 C 43 43.5, 57 43.5, 61 41" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"/>
+                    </g>
+                    <g transform="rotate(240 50 50)">
+                        <path d="M50 10 L50 25 M42 27 C 42 22, 58 22, 58 27 L60 41 C 60 43, 40 43, 40 41 Z" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M39 41 C 43 43.5, 57 43.5, 61 41" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"/>
+                    </g>
+                    <!-- 中間圓圈與文字 -->
+                    <circle cx="50" cy="50" r="19" fill="#121629" stroke="var(--primary)" stroke-width="2.5"/>
+                    <text x="50" y="45" fill="#fffffe" font-size="9" font-weight="900" font-family="'Noto Serif TC', serif" text-anchor="middle" letter-spacing="1">師</text>
+                    <text x="50" y="57" fill="#fffffe" font-size="9" font-weight="900" font-family="'Noto Serif TC', serif" text-anchor="middle" letter-spacing="1">大</text>
                 </svg>
                 <div class="title-group">
                     <div class="company-badge">師大技術衍生企業</div>
@@ -27,23 +40,18 @@
                     <p>國立臺灣師範大學 機電工程學系 | Ucore Tech & Signal Processing Lab</p>
                 </div>
             </div>
-            <div class="header-actions">
-                <a href="about_company.html" class="ucore-btn ucore-btn-primary">探索物聯網技術</a>
-            </div>
+            
+            <!-- 右上角導覽選單 (取代原橘色按鈕) -->
+            <nav class="header-nav">
+                <ul class="header-nav-links">
+                    <li class="active"><a href="index_company.html">首頁</a></li>
+                    <li><a href="about_company.html">核心技術</a></li>
+                    <li><a href="research_company.html">專案與成果</a></li>
+                    <li><a href="contact_company.html">聯絡與合作</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-
-    <!-- 導覽列 -->
-    <nav class="main-nav">
-        <div class="container nav-container">
-            <ul class="nav-links">
-                <li class="active"><a href="index_company.html">首頁</a></li>
-                <li><a href="about_company.html">核心技術</a></li>
-                <li><a href="research_company.html">專案與成果</a></li>
-                <li><a href="contact_company.html">聯絡與合作</a></li>
-            </ul>
-        </div>
-    </nav>
 
     <!-- Banner 區塊 -->
     <section class="hero-banner">
