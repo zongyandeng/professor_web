@@ -307,10 +307,14 @@ a {
 /* 經典學術版滾動時，品牌 Logo 的顯示與排版 */
 html[data-theme="classic"] .main-nav.scrolled .nav-brand {
     display: flex;
+    align-items: center; /* 強制水平置中對齊 */
+    gap: 12px;           /* 圖示與文字間距 */
 }
 
 html[data-theme="classic"] .main-nav.scrolled .nav-container {
-    justify-content: space-between;
+    display: flex;
+    justify-content: space-between; /* 左右分欄對齊，Logo 在左，選單在右 */
+    align-items: center;
 }
 
 /* 經典學術版滾動時，確保品牌 Logo 顏色與背景高對比 */
@@ -1093,10 +1097,6 @@ html[data-theme="classic"] .main-nav.scrolled .nav-links li.active a {
     }
 }
 
-    .footer-logo {
-        flex-direction: column;
-    }
-}
 
 /* ==========================================================================
    撠汗????Logo ?箇?璅?? (Nav Brand Base Style)
