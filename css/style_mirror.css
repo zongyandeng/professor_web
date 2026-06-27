@@ -1,0 +1,345 @@
+@import url('style.css');
+
+/* ==========================================================================
+   🌹 鏡像時尚風 (Mirror Fashion) 專屬版面樣式
+   ========================================================================== */
+body {
+    padding-top: 70px;
+    background-color: var(--bg-main);
+}
+
+.header-wrapper {
+    display: none !important;
+}
+
+/* 置中對稱導覽列結構 */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 70px;
+    padding: 0 3rem;
+}
+
+.nav-brand {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    z-index: 10;
+}
+
+.nav-brand-text h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.nav-brand-text p {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* 將第二個 li 與第三個 li 撐開，完美讓出正中央給 LOGO */
+.nav-links li:nth-child(2) {
+    margin-right: 280px;
+}
+
+.nav-links a {
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    color: var(--text-dark);
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.nav-links li.active a {
+    color: var(--accent) !important;
+    border-bottom: 2px solid var(--accent);
+}
+
+/* Fashion 左右分割滿版 Hero */
+.hero-banner {
+    height: 480px;
+    background-color: var(--bg-main) !important;
+    background-image: linear-gradient(180deg, rgba(139, 0, 0, 0.15) 0%, rgba(10, 10, 10, 0) 100%) !important;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 5rem;
+}
+
+.hero-banner .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    gap: 4rem;
+}
+
+.hero-content {
+    max-width: 60%;
+}
+
+.hero-content h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+}
+
+.hero-content p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+}
+
+/* 移動到 Hero 區的教授肖像樣式 - 時尚相框海報效果 */
+.hero-banner .prof-img-container {
+    width: 290px;
+    height: 360px;
+    flex-shrink: 0;
+    border: 8px solid #fff;
+    border-bottom: 30px solid #fff; /* 拍立得照片效果 */
+    border-radius: 4px;
+    overflow: hidden;
+    transform: rotate(2deg);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s;
+    background: #fff;
+}
+
+.hero-banner .prof-img-container:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 30px 60px rgba(139, 0, 0, 0.25);
+}
+
+.hero-banner .prof-img {
+    border-radius: 0px;
+    filter: grayscale(100%) contrast(1.2);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 括號時尚按鈕 */
+.mirror-btn-bracket {
+    display: inline-block;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border: 1px solid var(--text-dark);
+    border-radius: 6px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: transparent;
+}
+
+.mirror-btn-bracket:hover {
+    background-color: var(--text-dark);
+    color: var(--bg-main);
+    letter-spacing: 0.22em; /* 括號往兩側展開 */
+}
+
+/* 鏡像時尚大圓角卡片 */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 3rem;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s, box-shadow 0.5s;
+    box-shadow: var(--shadow-md);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(139, 0, 0, 0.35);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(139, 0, 0, 0.15);
+}
+
+/* 首頁簡介區（肖像移走後的文字調整） */
+.professor-intro {
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto 5rem;
+}
+
+.prof-details {
+    width: 100%;
+}
+
+.spec-badge {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: 1px solid var(--text-dark);
+    border-radius: 30px;
+    padding: 0.5rem 1.4rem;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    transition: all 0.3s;
+}
+
+.spec-badge:hover {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--text-light);
+}
+
+.section-title {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 1.6rem;
+    position: relative;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--accent);
+}
+
+.timeline-item::before {
+    background-color: var(--accent);
+    border: none;
+    width: 12px;
+    height: 12px;
+    left: -6px;
+    border-radius: 50%;
+}
+
+.course-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.course-box h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+}
+
+.news-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1.4rem 0;
+}
+
+.news-date {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.site-footer {
+    background-color: #030303;
+    border-top: 1px solid var(--border);
+    padding: 4rem 0;
+}
+
+header svg path {
+    stroke: var(--accent) !important;
+}
+
+footer svg path {
+    stroke: var(--accent) !important;
+}
+
+/* ==========================================================================
+   📱 鏡像時尚風 (Mirror Fashion Theme) RWD 響應式適應
+   ========================================================================== */
+@media (max-width: 768px) {
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        height: 60px;
+        padding: 0 1.5rem;
+    }
+    
+    .nav-brand {
+        position: static;
+        transform: none;
+    }
+    
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .nav-links li:nth-child(2) {
+        margin-right: 0px !important; /* 手機版移除中間大間距 */
+    }
+    
+    .hero-banner {
+        height: auto;
+        padding: 3rem 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .hero-banner .container {
+        flex-direction: column-reverse; /* 手機版人像在下，標題在上 */
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+    }
+    
+    .hero-banner .prof-img-container {
+        width: 220px;
+        height: 280px;
+        transform: rotate(0deg) !important; /* 手機版不傾斜防止跑版 */
+    }
+}

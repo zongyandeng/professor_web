@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於實驗室 | 訊號處理實驗室 - 吳順德副教授</title>
+    <meta name="description" content="國立臺灣師範大學機電工程學系訊號處理實驗室的簡介、研究領域、研究設備以及實驗室成員介紹。">
+    <link rel="stylesheet" href="css/style_moonlake.css">
+</head>
+<body>
+
+    <!-- 頂部頁首 -->
+    <header class="header-wrapper">
+        <div class="container school-info">
+            <svg viewBox="0 0 100 100" style="width: 70px; height: 70px; flex-shrink: 0;" aria-label="Signal Lab Logo">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="3" opacity="0.2"/>
+                <path d="M15 50 L32 50 L42 20 L52 80 L62 40 L70 55 L75 50 L85 50" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="42" cy="20" r="4" fill="#f59e0b"/>
+                <circle cx="52" cy="80" r="4" fill="#f59e0b"/>
+            </svg>
+            <div class="title-group">
+                <h1>訊號處理實驗室</h1>
+                <p>國立臺灣師範大學 機電工程學系 | Signal Processing Laboratory</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 導覽列 -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="index_moonlake.html">首頁</a></li>
+                <li class="active"><a href="about_moonlake.html">關於實驗室</a></li>
+                <li><a href="research_moonlake.html">教師研究成果</a></li>
+                <li><a href="contact_moonlake.html">聯絡與招生</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Banner 區塊 -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="hero-content">
+                <h2>關於我們的實驗室</h2>
+                <p>訊號處理實驗室著重於將前沿的數學分析工具，應用於機電系統與生物醫學工程。我們致力於發展高精度、高強健性的訊號與影像分析演算法。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要內容區 -->
+    <main class="container main-content">
+        
+        <!-- 實驗室簡介與核心研究領域 -->
+        <section class="research-areas">
+            <h3 class="section-title">核心研究領域</h3>
+            <div class="grid-3col" style="margin-top: 2rem;">
+                
+                <!-- 1. 經驗模態分析 (EMD) -->
+                <div class="area-card">
+                    <div class="area-icon">📊</div>
+                    <h3>經驗模態分析 (EMD)</h3>
+                    <p style="margin-bottom: 0.8rem; font-weight: 500; color: var(--accent);">Empirical Mode Decomposition</p>
+                    <p>專注於非線性與非穩態訊號處理技術，發展改進型的 EMD 演算法（如高斯窗口 EMD、適應性時間-尺度分解），解決傳統分析工具在時頻解析度與混波現象上的限制。</p>
+                </div>
+
+                <!-- 2. 獨立成分分析 (ICA) -->
+                <div class="area-card">
+                    <div class="area-icon">🔍</div>
+                    <h3>獨立成分分析 (ICA)</h3>
+                    <p style="margin-bottom: 0.8rem; font-weight: 500; color: var(--accent);">Independent Component Analysis</p>
+                    <p>利用統計獨立性將混合訊號分離成原始訊號。應用於盲源訊號分離、生醫訊號降噪以及多管道感測器資訊特徵提取。</p>
+                </div>
+
+                <!-- 3. 錯誤診斷系統 -->
+                <div class="area-card">
+                    <div class="area-icon">⚙️</div>
+                    <h3>錯誤診斷系統</h3>
+                    <p style="margin-bottom: 0.8rem; font-weight: 500; color: var(--accent);">Fault Diagnosis System</p>
+                    <p>結合多尺度排序熵 (MPE)、支援向量機 (SVM) 與馬氏距離，開發針對旋轉機械（齒輪箱、滾珠軸承）的即時異常檢測與劣化預警系統，實現智慧工廠之預防性保養。</p>
+                </div>
+
+                <!-- 4. 生醫訊號分析 -->
+                <div class="area-card" style="grid-column: span 1.5;">
+                    <div class="area-icon">❤️</div>
+                    <h3>生醫訊號分析</h3>
+                    <p style="margin-bottom: 0.8rem; font-weight: 500; color: var(--accent);">Biomedical Signal Analysis</p>
+                    <p>針對心電圖 (ECG)、腦波圖 (EEG) 及肌電圖 (EMG) 等生理訊號，開發高效降噪（濾除電極接觸雜訊與工頻干擾）與波形特徵自動辨識演算法，提升臨床診斷精度。</p>
+                </div>
+
+                <!-- 5. 生醫影像分析 -->
+                <div class="area-card" style="grid-column: span 1.5;">
+                    <div class="area-icon">👁️</div>
+                    <h3>生醫影像分析</h3>
+                    <p style="margin-bottom: 0.8rem; font-weight: 500; color: var(--accent);">Biomedical Image Analysis</p>
+                    <p>研發超頻譜生醫影像擷取與快速分析系統。例如利用「繼光鏡掃描式超頻譜影像系統」進行大鼠聲門與口腔癌早期診斷的影像偵測與病變分割演算法。</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 建議增補：實驗室設備與硬體資源 -->
+        <section style="margin-bottom: 4rem;">
+            <h3 class="section-title">實驗室設備與硬體資源</h3>
+            <div class="card" style="padding: 2.5rem;">
+                <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">為了支援學生進行具產業深度的實務研究，本實驗室配置了豐富的量測儀器、硬體開發板以及運算伺服器：</p>
+                <div class="grid-2col">
+                    <div>
+                        <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--font-serif); font-size: 1.15rem;">📊 量測儀器與硬體設備</h4>
+                        <ul class="course-list">
+                            <li style="margin-bottom: 0.5rem;"><strong>高階數位儲存示波器</strong>：提供多通道、高取樣率的動態訊號擷取與量測。</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>數位精密函數訊號產生器</strong>：用於產生標準及任意波形的測試訊號。</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>DSP 數位訊號處理器開發套件</strong>：Texas Instruments (TI) 高階 DSP 開發板，供演算法硬體加速實驗。</li>
+                            <li><strong>多通道生醫生理訊號擷取模組</strong>：具備高度隔離降噪電路，用於 ECG/EMG 實際訊號量測。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--font-serif); font-size: 1.15rem;">💻 軟體環境與運算伺服器</h4>
+                        <ul class="course-list">
+                            <li style="margin-bottom: 0.5rem;"><strong>高效能 GPU 運算工作站</strong>：配備多張 NVIDIA 高階顯卡，用於執行深度學習與大型訊號分析模型訓練。</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>MATLAB & Simulink</strong>：提供完整的訊號處理、小波轉換、控制系統模擬之開發授權。</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>LabVIEW 虛擬儀器開發平台</strong>：用於電腦與硬體儀器的資料擷取 (DAQ) 及圖形化監控界面整合。</li>
+                            <li><strong>Python 機器學習環境</strong>：配置 PyTorch / TensorFlow 開發框架，專注於智慧化錯誤診斷演算法。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 實驗室人員 -->
+        <section class="members-section">
+            <h3 class="section-title">實驗室人員</h3>
+            <div class="member-grid" style="margin-top: 2rem;">
+                
+                <!-- 成員 1 -->
+                <div class="member-card">
+                    <div class="member-avatar">郭</div>
+                    <h4>郭柏賢</h4>
+                    <div class="member-role">碩士班研究生</div>
+                </div>
+
+                <!-- 成員 2 -->
+                <div class="member-card">
+                    <div class="member-avatar">方</div>
+                    <h4>方姿晴</h4>
+                    <div class="member-role">碩士班研究生</div>
+                </div>
+
+                <!-- 成員 3 -->
+                <div class="member-card">
+                    <div class="member-avatar">辛</div>
+                    <h4>辛承宣</h4>
+                    <div class="member-role">碩士班研究生</div>
+                </div>
+
+                <!-- 成員 4 -->
+                <div class="member-card">
+                    <div class="member-avatar">周</div>
+                    <h4>周冠廷</h4>
+                    <div class="member-role">碩士班研究生</div>
+                </div>
+
+                <!-- 成員 5 -->
+                <div class="member-card">
+                    <div class="member-avatar">楊</div>
+                    <h4>楊松儒</h4>
+                    <div class="member-role">專題研究大學部生</div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <svg viewBox="0 0 100 100" style="width: 50px; height: 50px; opacity: 0.8;" aria-hidden="true">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="3" opacity="0.2"/>
+                    <path d="M15 50 L32 50 L42 20 L52 80 L62 40 L70 55 L75 50 L85 50" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="footer-school-text">
+                    <h4>國立臺灣師範大學</h4>
+                    <p>機電工程學系 訊號處理實驗室</p>
+                </div>
+            </div>
+            <div>
+                <p>&copy; 2026 訊號處理實驗室. All Rights Reserved. Designed for Shun-De Wu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

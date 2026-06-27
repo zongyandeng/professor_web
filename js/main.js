@@ -158,8 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. 初始化 DOM 佈局重構
-    initDOMRestructure();
 });
 
 /**
@@ -280,7 +278,7 @@ function initThemeSwitcher() {
             // 加上切換動畫 class
             document.documentElement.classList.add('theme-transitioning');
 
-            // 設定新主題
+            // 設定新主題並儲存
             document.documentElement.setAttribute('data-theme', targetTheme);
             localStorage.setItem('lab-theme', targetTheme);
 
@@ -291,10 +289,24 @@ function initThemeSwitcher() {
             // 觸發自定義事件，讓可能需要的第三方組件知道主題變了
             window.dispatchEvent(new CustomEvent('lab-theme-change', { detail: targetTheme }));
 
-            // 動畫結束後移除 class
+            // 計算重導向的目標 HTML 檔案名稱
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            let basePageName = currentPage.replace(/_(ucore|mirror|moonlake)\.html$/, '.html');
+            if (basePageName === '') basePageName = 'index.html';
+            
+            let targetPage = basePageName;
+            if (targetTheme === 'ucore') {
+                targetPage = basePageName.replace('.html', '_ucore.html');
+            } else if (targetTheme === 'mirror') {
+                targetPage = basePageName.replace('.html', '_mirror.html');
+            } else if (targetTheme === 'moonlake') {
+                targetPage = basePageName.replace('.html', '_moonlake.html');
+            }
+
+            // 延遲重導向，讓過渡動畫播放
             setTimeout(() => {
-                document.documentElement.classList.remove('theme-transitioning');
-            }, 400);
+                window.location.href = targetPage;
+            }, 150);
 
             // 收合選單
             switcherWrapper.classList.remove('active');
@@ -303,96 +315,5 @@ function initThemeSwitcher() {
     });
 }
 
-// ==========================================================================
-// 邏輯重組：DOM 佈局動態重塑 (Dynamic DOM Restructuring)
-// ==========================================================================
 
-let originalProfImgParent = null;
-let originalProfImgNextSibling = null;
-let originalHeroContentHTML = null;
-
-function initDOMRestructure() {
-    const profImgContainer = document.querySelector('.prof-img-container');
-    if (profImgContainer) {
-        originalProfImgParent = profImgContainer.parentElement;
-        originalProfImgNextSibling = profImgContainer.nextSibling;
-    }
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        originalHeroContentHTML = heroContent.innerHTML;
-    }
-
-    // 監聽主題變更自定義事件
-    window.addEventListener('lab-theme-change', (e) => {
-        domRestructure(e.detail);
-    });
-
-    // 第一次加載時手動執行一次
-    const currentTheme = localStorage.getItem('lab-theme') || 'classic';
-    domRestructure(currentTheme);
-}
-
-function domRestructure(theme) {
-    // 1. 還原 DOM 結構至經典學術風狀態
-    restoreDOM();
-
-    // 2. 根據不同主題執行深度重構
-    if (theme === 'mirror') {
-        applyMirrorDOM();
-    } else if (theme === 'ucore') {
-        applyUcoreDOM();
-    }
-}
-
-function restoreDOM() {
-    // 還原教授照片位置
-    const profImgContainer = document.querySelector('.prof-img-container');
-    if (profImgContainer && originalProfImgParent) {
-        if (originalProfImgNextSibling) {
-            originalProfImgParent.insertBefore(profImgContainer, originalProfImgNextSibling);
-        } else {
-            originalProfImgParent.appendChild(profImgContainer);
-        }
-    }
-
-    // 還原 Hero Content 內容
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent && originalHeroContentHTML !== null) {
-        heroContent.innerHTML = originalHeroContentHTML;
-    }
-}
-
-function applyMirrorDOM() {
-    // 1. 將教授照片移入 Hero 區的 container 內，作為右側時尚大圖
-    const profImgContainer = document.querySelector('.prof-img-container');
-    const heroContainer = document.querySelector('.hero-banner .container');
-    if (profImgContainer && heroContainer) {
-        heroContainer.appendChild(profImgContainer);
-    }
-
-    // 2. 修改首頁 Hero 的按鈕為括號時尚按鈕
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        const actionsHTML = `
-            <div class="mirror-hero-actions" style="margin-top: 2rem;">
-                <a href="contact.html" class="mirror-btn-bracket">( START FOR FREE )</a>
-            </div>
-        `;
-        heroContent.insertAdjacentHTML('beforeend', actionsHTML);
-    }
-}
-
-function applyUcoreDOM() {
-    // 在首頁 Hero Content 動態注入雙按鈕
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        const actionsHTML = `
-            <div class="ucore-hero-actions" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: flex-start; flex-wrap: wrap;">
-                <a href="research.html" class="ucore-btn-primary">查看專案實績</a>
-                <a href="contact.html" class="ucore-btn-secondary">了解核心技術</a>
-            </div>
-        `;
-        heroContent.insertAdjacentHTML('beforeend', actionsHTML);
-    }
-}
 

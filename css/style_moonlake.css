@@ -1,0 +1,309 @@
+@import url('style.css');
+
+/* ==========================================================================
+   🌙 月湖物理風 (Moonlake Theme) 專屬版面樣式
+   ========================================================================== */
+body {
+    padding-top: 70px;
+    background-color: var(--bg-main);
+}
+
+.header-wrapper {
+    display: none !important;
+}
+
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: var(--bg-main);
+    border-bottom: 2px solid var(--primary);
+}
+
+.nav-container {
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 70px;
+}
+
+.nav-brand {
+    display: flex;
+    color: var(--primary);
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.nav-links a {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    color: var(--primary);
+    padding: 0.5rem 1.2rem;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-links a:hover {
+    background-color: var(--bg-card);
+    border: 2px solid var(--primary);
+}
+
+.nav-links li.active a {
+    background-color: var(--primary);
+    color: var(--bg-main) !important;
+    border: 2px solid var(--primary);
+}
+
+/* 3D 模擬網格 Hero */
+.hero-banner {
+    height: 380px;
+    background-color: var(--bg-card) !important;
+    background-image: none !important;
+    border-bottom: 2px solid var(--primary);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 模仿 Moonlake 網格底色 */
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(var(--primary) 1px, transparent 1px),
+        linear-gradient(90deg, var(--primary) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.04;
+    pointer-events: none;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+    margin-bottom: 1.2rem;
+}
+
+.hero-content h2::after {
+    content: ' ↳';
+    color: var(--primary);
+}
+
+.hero-content p {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+}
+
+/* Moonlake 雙箭頭與按鈕 Hover 位移動態 */
+.submit-btn,
+.tab-btn,
+.filter-btn,
+.ucore-btn-primary,
+.ucore-btn-secondary {
+    position: relative;
+    border-radius: 0px !important;
+    border: 2px solid var(--primary) !important;
+    background-color: var(--bg-card);
+    color: var(--primary) ;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.submit-btn::before,
+.tab-btn::before,
+.filter-btn::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.submit-btn::after,
+.tab-btn::after,
+.filter-btn::after {
+    content: '←';
+    position: absolute;
+    right: -20px;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover,
+.tab-btn:hover,
+.filter-btn:hover {
+    padding-left: 2.2rem !important;
+    padding-right: 2.2rem !important;
+    background-color: var(--primary);
+    color: var(--bg-main);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--accent);
+}
+
+.submit-btn:hover::before,
+.tab-btn:hover::before,
+.filter-btn:hover::before {
+    left: 10px;
+    opacity: 1;
+}
+
+.submit-btn:hover::after,
+.tab-btn:hover::after,
+.filter-btn:hover::after {
+    right: 10px;
+    opacity: 1;
+}
+
+/* 月湖粗線框與實心黑影卡片 */
+.card {
+    background-color: var(--bg-card);
+    border: 2px solid var(--primary);
+    border-radius: 0px;
+    padding: 2.5rem;
+    box-shadow: none;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.card:hover {
+    transform: translate(-6px, -6px);
+    box-shadow: 8px 8px 0px var(--primary);
+}
+
+/* 教授肖像框線與硬實心陰影 */
+.prof-img-container {
+    border-radius: 0px;
+    border: 2px solid var(--primary);
+    padding: 6px;
+    background-color: var(--bg-card);
+    box-shadow: 6px 6px 0px var(--primary);
+}
+
+.prof-img {
+    border-radius: 0px;
+    filter: contrast(1.1) brightness(1.02);
+}
+
+.prof-details h2 {
+    font-family: var(--font-sans);
+    font-weight: 800;
+}
+
+.prof-details h2::after {
+    content: ' ↳';
+}
+
+.spec-badge {
+    background-color: var(--bg-main);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 0px;
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+}
+
+.spec-badge:hover {
+    background-color: var(--primary);
+    color: var(--bg-main);
+}
+
+.section-title {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.6rem;
+}
+
+.section-title::after {
+    display: none;
+}
+
+.timeline-item {
+    border-left: 2px solid var(--primary);
+}
+
+.timeline-item::before {
+    background-color: var(--primary);
+    border: none;
+    width: 10px;
+    height: 10px;
+    left: -6px;
+    border-radius: 0;
+    transform: rotate(45deg);
+}
+
+.course-grid {
+    gap: 2rem;
+}
+
+.course-box {
+    background-color: var(--bg-card);
+    border: 2px solid var(--primary);
+    border-radius: 0px;
+    padding: 2rem;
+    box-shadow: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-box:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px var(--primary);
+}
+
+.course-box h3 {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.5rem;
+}
+
+.course-list li {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    padding-left: 1.2rem;
+    border-bottom: 1px dashed rgba(26, 26, 26, 0.2);
+}
+
+.course-list li::before {
+    content: '→';
+    color: var(--primary);
+    left: 0;
+}
+
+.news-item {
+    border-bottom: 2px dashed var(--primary);
+    padding: 1.2rem 0;
+    font-family: var(--font-serif);
+}
+
+.news-date {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.site-footer {
+    background-color: var(--bg-card);
+    border-top: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 4rem 0;
+}
+
+.footer-logo svg path {
+    stroke: var(--primary) !important;
+}
+
+.site-footer p {
+    color: var(--primary);
+}
