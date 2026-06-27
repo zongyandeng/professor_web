@@ -303,21 +303,37 @@ a {
 .main-nav.scrolled a {
     color: var(--text-dark);
 }
+/* ==========================================================================
+   經典學術版導覽列與 Logo 佈局 (頂部與滾動狀態統一)
+   ========================================================================== */
 
-/* 經典學術版滾動時，品牌 Logo 的顯示與排版 */
-html[data-theme="classic"] .main-nav.scrolled .nav-brand {
+/* 1. 基礎排版：無論滾動與否，皆採用左側 Logo、右側連結的排版 */
+html[data-theme="classic"] .main-nav .nav-brand {
     display: flex;
-    align-items: center; /* 強制水平置中對齊 */
-    gap: 12px;           /* 圖示與文字間距 */
+    align-items: center;
+    gap: 12px;
 }
 
-html[data-theme="classic"] .main-nav.scrolled .nav-container {
+html[data-theme="classic"] .main-nav .nav-container {
     display: flex;
-    justify-content: space-between; /* 左右分欄對齊，Logo 在左，選單在右 */
+    justify-content: space-between; /* 左右分欄 */
     align-items: center;
 }
 
-/* 經典學術版滾動時，確保品牌 Logo 顏色與背景高對比 */
+/* 2. 頂部狀態下（深藍色背景）的 Logo 顏色設定 */
+html[data-theme="classic"] .main-nav .nav-brand svg {
+    color: var(--accent); /* SVG 圖示使用金黃色，與 Header 圖示呼應 */
+}
+
+html[data-theme="classic"] .main-nav .nav-brand-text h4 {
+    color: var(--text-light); /* 實驗室名稱使用白色文字 */
+}
+
+html[data-theme="classic"] .main-nav .nav-brand-text p {
+    color: rgba(255, 255, 255, 0.7); /* 英文簡稱使用淺灰色 */
+}
+
+/* 3. 滾動狀態下（白色背景）的 Logo 與連結顏色覆寫 */
 html[data-theme="classic"] .main-nav.scrolled .nav-brand svg {
     color: var(--primary); /* SVG 圖示使用主色（深藍） */
 }
@@ -330,17 +346,16 @@ html[data-theme="classic"] .main-nav.scrolled .nav-brand-text p {
     color: var(--text-muted); /* 英文簡稱使用半透明深色 */
 }
 
-/* 經典學術版滾動時，導覽列連結的高對比顏色設定 */
 html[data-theme="classic"] .main-nav.scrolled .nav-links a {
-    color: var(--text-dark); /* 預設深色文字 */
+    color: var(--text-dark); /* 連結使用深色文字 */
 }
 
 html[data-theme="classic"] .main-nav.scrolled .nav-links a:hover {
-    color: var(--accent-hover) !important; /* Hover 時使用較深的橘黃色以利辨識 */
+    color: var(--accent-hover) !important;
 }
 
 html[data-theme="classic"] .main-nav.scrolled .nav-links li.active a {
-    color: var(--primary) !important; /* 啟用項目使用主色（深藍），並保留金黃色底線，兼顧對比與美觀 */
+    color: var(--primary) !important; /* 啟用項目使用主色（深藍），並保留金黃色底線 */
 }
 
 .nav-container {
